@@ -24,6 +24,8 @@ function App() {
 
   function adjustVolume(e) {
     setVolumeLevel(e.target.value);
+    setCurrentAction(`Volume: ${volumeLevel}`);
+    setTimeout(() => setCurrentAction(""), 2000);
   }
 
   function playAudio(audioURL, audioName) {
