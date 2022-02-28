@@ -1,7 +1,6 @@
-.red {
-  background-color: rgb(168, 168, 168);
-}
-
 .drum-button {
   border: none;
+}
+.pressed-button {
+  background-color: rgb(168, 168, 168);
 }
