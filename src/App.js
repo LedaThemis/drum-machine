@@ -18,7 +18,7 @@ function App() {
       oldBank === "bankOne" ? "bankTwo" : "bankOne"
     );
     setCurrentAction(
-      currentBank === "bankOne" ? "Heater Kit" : "Smooth Piano Kit"
+      currentBank === "bankTwo" ? "Heater Kit" : "Smooth Piano Kit"
     );
   }
 
