@@ -8,31 +8,42 @@ import Slider from "./components/Slider";
 import audioData from "./audio";
 
 function App() {
+  const [isOn, setIsOn] = React.useState(false);
   const [volumeLevel, setVolumeLevel] = React.useState(50);
   const [currentBank, setCurrentBank] = React.useState("bankOne");
   const [currentAction, setCurrentAction] = React.useState("");
   const [currentPressedButton, setCurrentPressedButton] = React.useState("");
 
+  function setPower() {
+    setIsOn((old) => !old);
+  }
+
   function updateBank() {
-    setCurrentBank((oldBank) =>
-      oldBank === "bankOne" ? "bankTwo" : "bankOne"
-    );
-    setCurrentAction(
-      currentBank === "bankTwo" ? "Heater Kit" : "Smooth Piano Kit"
-    );
+    if (isOn) {
+      setCurrentBank((oldBank) =>
+        oldBank === "bankOne" ? "bankTwo" : "bankOne"
+      );
+      setCurrentAction(
+        currentBank === "bankTwo" ? "Heater Kit" : "Smooth Piano Kit"
+      );
+    }
   }
 
   function adjustVolume(e) {
-    setVolumeLevel(e.target.value);
-    setCurrentAction(`Volume: ${volumeLevel}`);
-    setTimeout(() => setCurrentAction(""), 2000);
+    if (isOn) {
+      setVolumeLevel(e.target.value);
+      setCurrentAction(`Volume: ${volumeLevel}`);
+      setTimeout(() => setCurrentAction(""), 2000);
+    }
   }
 
   function playAudio(audioURL, audioName) {
-    const audioObj = new Audio(audioURL);
-    audioObj.volume = volumeLevel / 100;
-    audioObj.play();
-    setCurrentAction(audioName);
+    if (isOn) {
+      const audioObj = new Audio(audioURL);
+      audioObj.volume = volumeLevel / 100;
+      audioObj.play();
+      setCurrentAction(audioName);
+    }
   }
   React.useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -70,8 +81,9 @@ function App() {
     <div>
       <h1>{currentAction}</h1>
       {drumButtons}
-      <ToggleSwitch updateBank={updateBank} />
+      <ToggleSwitch name="Bank" updateFunction={updateBank} />
       <Slider volume={volumeLevel} adjustVolume={adjustVolume} />
+      <ToggleSwitch name="Power" updateFunction={setPower} />
     </div>
   );
 }
