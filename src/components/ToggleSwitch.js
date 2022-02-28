@@ -7,7 +7,11 @@ export default function ToggleSwitch(props) {
     <div className="toggle-switch">
       <h3>{props.name}</h3>
       <label className="switch">
-        <input type="checkbox" onClick={props.updateFunction} />
+        <input
+          type="checkbox"
+          checked={props.checked}
+          onClick={props.updateFunction}
+        />
         <span className="slider round"></span>
       </label>
     </div>
