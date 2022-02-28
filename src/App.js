@@ -4,28 +4,28 @@ import "./styles/App.css";
 
 import DrumButton from "./components/DrumButton.js";
 import ToggleSwitch from "./components/ToggleSwitch";
+import Slider from "./components/Slider";
 import audioData from "./audio";
 
 function App() {
-  const [volumeLevel, setVolumeLevel] = React.useState(0.2);
+  const [volumeLevel, setVolumeLevel] = React.useState(50);
   const [currentBank, setCurrentBank] = React.useState("bankOne");
   const [currentAction, setCurrentAction] = React.useState("");
   const [currentPressedButton, setCurrentPressedButton] = React.useState("");
 
-  console.log(currentAction);
   function updateBank() {
     setCurrentBank((oldBank) =>
       oldBank === "bankOne" ? "bankTwo" : "bankOne"
     );
   }
 
-  function adjustVolume(newVolumeLevel) {
-    setVolumeLevel(newVolumeLevel);
+  function adjustVolume(e) {
+    setVolumeLevel(e.target.value);
   }
 
   function playAudio(audioURL, audioName) {
     const audioObj = new Audio(audioURL);
-    audioObj.volume = volumeLevel;
+    audioObj.volume = volumeLevel / 100;
     audioObj.play();
     setCurrentAction(audioName);
   }
@@ -66,6 +66,7 @@ function App() {
       <h1>{currentAction}</h1>
       {drumButtons}
       <ToggleSwitch updateBank={updateBank} />
+      <Slider volume={volumeLevel} adjustVolume={adjustVolume} />
     </div>
   );
 }
