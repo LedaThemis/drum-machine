@@ -5,6 +5,8 @@ h1 {
 
 .buttons {
   display: grid;
+  width: clamp(100px, 25vw, 500px);
+  height: clamp(100px, 25vw, 500px);
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 }

@@ -1,3 +1,7 @@
 .red {
-  width: 40px;
+  background-color: rgb(168, 168, 168);
+}
+
+.drum-button {
+  border: none;
 }
