@@ -9,6 +9,7 @@ function App() {
   const [volumeLevel, setVolumeLevel] = React.useState(0.2);
   const [currentBank, setCurrentBank] = React.useState("bankOne");
   const [currentAction, setCurrentAction] = React.useState("");
+  const [currentPressedButton, setCurrentPressedButton] = React.useState("");
 
   console.log(currentAction);
   function updateBank() {
@@ -23,31 +24,40 @@ function App() {
 
   function playAudio(audioURL, audioName) {
     const audioObj = new Audio(audioURL);
-    console.log(audioObj);
     audioObj.volume = volumeLevel;
     audioObj.play();
     setCurrentAction(audioName);
   }
   React.useEffect(() => {
-    window.addEventListener("keyup", handleKeyPress);
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
     return () => {
-      window.removeEventListener("keyup", handleKeyPress);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
     };
   });
 
-  function handleKeyPress({ keyCode }) {
+  function handleKeyDown({ keyCode }) {
     audioData[currentBank].forEach((drum) => {
       if (drum.keyCode === keyCode) {
         playAudio(drum.url, drum.id);
+
+        setCurrentPressedButton(drum.id);
       }
     });
   }
 
+  function handleKeyUp() {
+    setCurrentPressedButton("");
+  }
+
   const drumButtons = audioData[currentBank].map((drum) => (
     <DrumButton
+      audioName={drum.id}
       playAudio={() => playAudio(drum.url, drum.id)}
       keyTrigger={drum.keyTrigger}
-      keyCode={drum.keyCode}
+      currentButton={currentPressedButton}
+      key={drum.id}
     />
   ));
   return (
