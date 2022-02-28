@@ -86,7 +86,7 @@ function App() {
   return (
     <div>
       <h1>{currentAction}</h1>
-      {drumButtons}
+      <div className="buttons">{drumButtons}</div>
       <ToggleSwitch
         name="Bank"
         updateFunction={updateBank}
