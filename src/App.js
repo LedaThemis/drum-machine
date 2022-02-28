@@ -43,6 +43,11 @@ function App() {
       audioObj.volume = volumeLevel / 100;
       audioObj.play();
       setCurrentAction(audioName);
+
+      // Register current pressed button to style pressed button
+      setCurrentPressedButton(audioName);
+      // Wait 125ms to simulate a button being clicked
+      setTimeout(() => setCurrentPressedButton(""), 125);
     }
   }
   React.useEffect(() => {
