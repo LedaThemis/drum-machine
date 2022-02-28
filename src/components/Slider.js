@@ -9,7 +9,7 @@ export default function Slider(props) {
         min="1"
         max="100"
         value={props.volume}
-        className="slider"
+        className="slider-volume"
         id="audioSlider"
         onChange={props.adjustVolume}
       />

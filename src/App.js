@@ -84,17 +84,19 @@ function App() {
     />
   ));
   return (
-    <div>
-      <h1>{currentAction}</h1>
+    <main id="main">
       <div className="buttons">{drumButtons}</div>
-      <ToggleSwitch
-        name="Bank"
-        updateFunction={updateBank}
-        checked={"bankOne" === currentBank}
-      />
-      <Slider volume={volumeLevel} adjustVolume={adjustVolume} />
-      <ToggleSwitch name="Power" updateFunction={setPower} checked={isOn} />
-    </div>
+      <div className="controllers">
+        <Slider volume={volumeLevel} adjustVolume={adjustVolume} />
+        <h1>{currentAction}</h1>
+        <ToggleSwitch
+          name="Bank"
+          updateFunction={updateBank}
+          checked={"bankOne" === currentBank}
+        />
+        <ToggleSwitch name="Power" updateFunction={setPower} checked={isOn} />
+      </div>
+    </main>
   );
 }
 
