@@ -17,6 +17,9 @@ function App() {
     setCurrentBank((oldBank) =>
       oldBank === "bankOne" ? "bankTwo" : "bankOne"
     );
+    setCurrentAction(
+      currentBank === "bankOne" ? "Heater Kit" : "Smooth Piano Kit"
+    );
   }
 
   function adjustVolume(e) {
