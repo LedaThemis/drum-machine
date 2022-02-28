@@ -16,6 +16,7 @@ function App() {
 
   function setPower() {
     setIsOn((old) => !old);
+    setCurrentAction("");
   }
 
   function updateBank() {
