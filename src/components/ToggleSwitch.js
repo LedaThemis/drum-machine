@@ -1,11 +1,14 @@
 import React from "react";
 
-export default function ToggleSwitch() {
+import "../styles/ToggleSwitch.css";
+
+export default function ToggleSwitch(props) {
   return (
     <div className="toggle-switch">
-      <label class="switch">
-        <input type="checkbox" />
-        <span class="slider round"></span>
+      <h3>Bank</h3>
+      <label className="switch">
+        <input type="checkbox" onClick={props.updateBank} />
+        <span className="slider round"></span>
       </label>
     </div>
   );

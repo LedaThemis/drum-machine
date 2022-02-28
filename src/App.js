@@ -3,6 +3,7 @@ import React from "react";
 import "./styles/App.css";
 
 import DrumButton from "./components/DrumButton.js";
+import ToggleSwitch from "./components/ToggleSwitch";
 import audioData from "./audio";
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
     <div>
       <h1>{currentAction}</h1>
       {drumButtons}
+      <ToggleSwitch updateBank={updateBank} />
     </div>
   );
 }
